@@ -5,7 +5,7 @@ const modelSchema = new mongoose.Schema({
     lowPrice: Number,
     picture: String,
     discountRate: Number,
-    addCount: { type: Number, default: 0 },
+    addCount: Number,
     startDate: Date,
     endDate: Date,
     shop: {

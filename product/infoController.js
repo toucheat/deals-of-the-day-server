@@ -39,10 +39,18 @@ router.get('/', function(req, res) {
 });
 // 상품 정보 조회
 router.get('/:id', function(req, res) {
-    info.findById(req.params.id, function (err, info) {
+    info.findOne({name:req.params.id}, function (err, info) {
         if (err) return res.status(500).send("상품 정보 조회 실패");
         if (!info) return res.status(404).send("상품 정보 없음.");
         res.status(200).send(info);
+        console.log(req.params.id);
+    });
+});
+// 삭제
+router.delete('/:id', function (req, res) {
+    info.findByIdAndRemove(req.params.id, function (err, user) {
+        if (err) return res.status(500).send("User 삭제 실패");
+        res.status(200).send("User "+ user.name +" 삭제됨.");
     });
 });
 module.exports = router;
