@@ -1,16 +1,28 @@
 {
   "name": "node",
   "version": "1.0.0",
-  "description": "",
+  "description": "��#\u0000 \u0000d\u0000e\u0000a\u0000l\u0000s\u0000-\u0000o\u0000f\u0000-\u0000t\u0000h\u0000e\u0000-\u0000d\u0000a\u0000y\u0000-\u0000s\u0000e\u0000r\u0000v\u0000e\u0000r\u0000\r\u0000 \u0000",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.24.0",
     "body-parser": "^1.19.0",
+    "cheerio": "^1.0.0-rc.10",
     "express": "^4.17.1",
     "mongoose": "^5.12.3"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/toucheat/deals-of-the-day-server.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/toucheat/deals-of-the-day-server/issues"
+  },
+  "homepage": "https://github.com/toucheat/deals-of-the-day-server#readme"
 }
