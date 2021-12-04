@@ -11,4 +11,7 @@ app.use('/info', infoController);
 var crawler = require('./crawler/crawler');
 app.use('/crawler', crawler);
 
+var mallList = require('./mallList/mallList');
+app.use('/malllist', mallList);
+
 module.exports = app;
