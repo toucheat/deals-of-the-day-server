@@ -4,15 +4,13 @@ var bodyParser = require('body-parser');
 router.use(bodyParser.urlencoded({ extended:true }));
 const axios = require("axios");
 const cheerio = require("cheerio");
-const log = console.log;
 
 router.get('/:id', function(req, res) {
     const getHtml = async () => {
-      log(req.params.id);
       try {
           return await axios.get("http://search.danawa.com/dsearch.php?k1=" + encodeURIComponent(req.params.id));
         } catch (error) {
-          console.error(error);
+          res.status(500).send("AXIOS GET FAILED");
         }
       };
 
@@ -26,7 +24,14 @@ router.get('/:id', function(req, res) {
         list.forEach((src) => {
           const select = $(src).find("div.prod_main_info > div.prod_info > p.prod_name > a");
           const name = select.text();
-          const link = select.attr("href");
+
+          var link = select.attr("href") + '';
+          var pcodeSplit = link.split('=');
+          if(pcodeSplit[1] !== undefined){
+            var pcode = pcodeSplit[1].split('&');
+            pcode = pcode[0];
+          }
+
           var price = $(src).find("div.prod_main_info > div.prod_pricelist > ul > li > p.price_sect > a").first().text();
           if(price === ""){
             price = $(src).find("div.top5_price > em.num_c").first().text() + "원";
@@ -38,7 +43,7 @@ router.get('/:id', function(req, res) {
               if(link.search("pcode=") !== -1)
               result.push({
                 name,
-                link,
+                pcode,
                 price,
                 img,
               });
