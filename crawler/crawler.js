@@ -27,18 +27,28 @@ router.get('/:id', function(req, res) {
           const select = $(src).find("div.prod_main_info > div.prod_info > p.prod_name > a");
           const name = select.text();
           const link = select.attr("href");
-          const price = $(src).find("div.prod_main_info > div.prod_pricelist > ul > li > p.price_sect > a").first().text();
+          var price = $(src).find("div.prod_main_info > div.prod_pricelist > ul > li > p.price_sect > a").first().text();
+          if(price === ""){
+            price = $(src).find("div.top5_price > em.num_c").first().text() + "원";
+          }
+          const img = $(src).find("div.thumb_image > a > img").first().attr("src");
 
-          result.push({
-            name,
-            link,
-            price,
-          });
+          if(name !== ""){
+            if(link.search("/ajax/") === -1){
+              if(link.search("pcode=") !== -1)
+              result.push({
+                name,
+                link,
+                price,
+                img,
+              });
+            }
+          }
         });
 
         return result;
       })
-      .then(ress => log(ress));
+      .then(ress => res.status(200).send(ress));
 });
 
 module.exports = router;
