@@ -22,9 +22,14 @@ router.get('/:id', function(req, res) {
         const list = $("tbody.high_list > tr").toArray();
 
         list.forEach((src) => {
-          const mallInfo = $(src).find("td.mall > div.logo_over > a > img");
-          const mallName = mallInfo.attr("alt");
-          const mallImg = mallInfo.attr("src");
+          var mallInfo = $(src).find("td.mall > div.logo_over > a > img");
+          var mallName = mallInfo.attr("alt");
+          var mallImg = mallInfo.attr("src");
+
+          if(mallName === undefined){
+            mallName = $(src).find("td.mall > div.logo_over > a").text();
+            mallImg = $(src).find("td.mall > div.logo_over > span").text();
+          }
 
           const link = $(src).find("td.mall > div.logo_over > a").attr("href");
 
@@ -32,13 +37,15 @@ router.get('/:id', function(req, res) {
 
           const shippingCost = $(src).find("span.stxt.deleveryBaseSection").text();
 
-          result.push({
+          if(link.search("/ajax/") === -1){
+            result.push({
               mallName,
               mallImg,
               link,
               price,
               shippingCost,
-          })
+          });
+          }
         });
 
         return result;
