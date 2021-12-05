@@ -8,8 +8,8 @@ app.use('/users', UserController);
 var infoController = require('./product/infoController');
 app.use('/info', infoController);
 
-var crawler = require('./crawler/crawler');
-app.use('/crawler', crawler);
+var productSearch = require('./productSearch/search');
+app.use('/productsearch', productSearch);
 
 var mallList = require('./mallList/mallList');
 app.use('/malllist', mallList);
