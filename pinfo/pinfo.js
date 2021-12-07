@@ -7,13 +7,13 @@ const cheerio = require("cheerio");
 var favorite = require('../favoriteCount/favorite');
 
 router.get('/:id', function(req, res) {
-  var favoriteCount;  
+  var favoriteCount = 0;  
   const getHtml = async () => {
       try {
         favorite.findOne({ pcode: req.params.id }, function(err, fav){
           if (err) return console.log(err);
-          favoriteCount = fav.favoriteCount;
-        });  
+          if (fav) favoriteCount = fav.favoriteCount;
+        });
         return await axios.get("http://prod.danawa.com/info/?pcode=" + encodeURIComponent(req.params.id));
         } catch (error) {
           res.status(500).send("AXIOS GET FAILED");
