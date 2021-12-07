@@ -53,4 +53,13 @@ router.get('/findemail/:email', function(req, res) {
         res.status(200).send(user);
     });
 });
+//찜하기 추가
+router.post('/addfavorite', function(req, res) {
+    var favorite = {"pcode": req.body.pcode};
+    User.findOneAndUpdate({ email: req.body.email }, { $push: { favoriteList: favorite }},
+        function(err, user) {
+            if (err) return res.status(500).send("업데이트 실패.");
+            res.status(200).send("add success");
+        });
+});
 module.exports = router;
