@@ -16,6 +16,16 @@ router.post('/', function(req, res) {
             res.status(200).send(user);
         });
 });
+
+//로그인 여부
+router.post('/:login', function(req, res) {
+    User.findOne( { email: req.body.email, password: req.body.password }, function (err, user) {
+        if (err) return res.status(500).send("쿼리 실패");
+        if (!user) return res.status(404).send("로그인 실패");
+        res.status(200).send(user);
+    });
+});
+
 // User 전체 조회
 router.get('/', function(req, res) {
     User.find( {}, function(err, users) {
