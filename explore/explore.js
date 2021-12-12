@@ -18,16 +18,6 @@ router.get('/', function(req, res) {
         '--disable-gpu'], headless: true });
         const page = await browser.newPage();
 
-        await page.setRequestInterception(true);
-
-        page.on('request', (req) => {
-          if (req.resourceType() === 'image') {
-            req.abort();
-          } else {
-            req.continue();
-          }
-        });
-
         await page.goto('http://danawa.com');
 
         await autoScroll(page);
