@@ -44,6 +44,9 @@ router.get('/', function(req, res) {
             '--password-store=basic',
             '--use-gl=swiftshader',
             '--use-mock-keychain',
+            '--disable-accelerated-2d-canvas',
+            '--disable-gpu',
+
           ];
 
         const browser = await puppeteer.launch({ args: minimal_args, headless: true });
