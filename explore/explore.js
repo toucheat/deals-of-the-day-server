@@ -9,7 +9,8 @@ router.get('/', function(req, res) {
     (async() => {
         result = [];
 
-        const browser = await puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'] });
+        const browser = await puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox',  '--proxy-server="direct://"',
+        '--proxy-bypass-list=*'], headless: true });
         const page = await browser.newPage();
 
         await page.goto('http://danawa.com');
