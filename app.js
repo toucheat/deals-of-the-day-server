@@ -20,4 +20,10 @@ app.use('/pinfo', pinfo);
 var favoriteCount = require('./favoriteCount/favoriteController');
 app.use('/favorite', favoriteCount);
 
+var hotItem = require('./hotItem/hotItem');
+app.use('/hotitem', hotItem);
+
+var explore = require('./explore/explore');
+app.use('/explore', explore);
+
 module.exports = app;
