@@ -19,11 +19,11 @@ router.get('/', function(req, res) {
         let result = [];
         const $ = cheerio.load(html.data);
         
-        const list = $("ul.prod-list.swiper-slide > li").toArray();
+        const list = $("ul.prod-list > li").toArray();
 
         list.forEach((src) => {
           const name = $(src).find("a > span.prod-list__txt").text();
-          const img = $(src).find("a > span.prod-list__thumb > img").attr("src");
+          const img = $(src).find("a > span.prod-list__thumb > span.prod-list__flag > img").attr("src");
           const link = $(src).find("a").attr("href");
           const price = $(src).find("a > span.prod-list__price > span.num").text();
 
