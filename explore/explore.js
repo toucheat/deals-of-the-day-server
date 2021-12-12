@@ -88,7 +88,7 @@ router.get('/', function(req, res) {
         await page.evaluate(async () => {
             await new Promise((resolve, reject) => {
                 var totalHeight = 0;
-                var distance = 3500;
+                var distance = 100;
                 var timer = setInterval(() => {
                     var scrollHeight = document.body.scrollHeight;
                     window.scrollBy(0, distance);
