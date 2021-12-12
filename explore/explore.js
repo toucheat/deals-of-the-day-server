@@ -49,7 +49,7 @@ router.get('/', function(req, res) {
             '--single-process'
           ];
 
-        const browser = await puppeteer.launch({ args: minimal_args, headless: true });
+        const browser = await puppeteer.launch({ headless: true });
         const page = await browser.newPage();
 
         await page.goto('http://danawa.com');
