@@ -10,7 +10,12 @@ router.get('/', function(req, res) {
         result = [];
 
         const browser = await puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox',  '--proxy-server="direct://"',
-        '--proxy-bypass-list=*'], headless: true });
+        '--proxy-bypass-list=*', '--disable-dev-shm-usage',
+        '--disable-accelerated-2d-canvas',
+        '--no-first-run',
+        '--no-zygote',
+        '--single-process',
+        '--disable-gpu'], headless: true });
         const page = await browser.newPage();
 
         await page.goto('http://danawa.com');
