@@ -9,7 +9,7 @@ router.get('/', function(req, res) {
     (async() => {
         result = [];
 
-        const browser = await puppeteer.launch();
+        const browser = await puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'] });
         const page = await browser.newPage();
         await page.goto('http://danawa.com');
         await autoScroll(page);
