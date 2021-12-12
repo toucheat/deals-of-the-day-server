@@ -46,7 +46,7 @@ router.get('/', function(req, res) {
             '--use-mock-keychain',
             '--disable-accelerated-2d-canvas',
             '--disable-gpu',
-
+            '--single-process'
           ];
 
         const browser = await puppeteer.launch({ args: minimal_args, headless: true });
