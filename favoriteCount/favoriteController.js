@@ -26,6 +26,27 @@ router.delete('/', function(req, res) {
         });
 });
 
+// 개별 쇼핑몰 별 찜목록 추가
+router.post('/:mall', function(req, res) {
+    var fav = { "mallName": req.body.mallName, "mallImg": req.body.mallImg, "link": req.body.link, "price": req.body.price, "shippingCost": req.body.shippingCost };
+    User.findOneAndUpdate({ email: req.body.email }, { $addToSet: { mallList: fav }},
+        function(err, user) {
+            if (err) return res.status(500).send("업데이트 실패.");
+            countUpdate(req.body.pcode);
+            res.status(200).send("add success");
+        });
+});
+
+// 개별 쇼핑몰 찜 목록 삭제
+router.delete('/:mall', function(req, res) {
+    var fav = {"link": req.body.link};
+    User.findOneAndUpdate({ email: req.body.email }, { $pull: { mallList: fav }},
+        function(err, user) {
+            if (err) return res.status(500).send("업데이트 실패.");
+            res.status(200).send("delete success");
+        });
+});
+
 //찜목록 전체 조회
 router.get('/', function(req, res) {
     favorite.find( {}, function(err, users) {
