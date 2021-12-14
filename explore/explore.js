@@ -29,7 +29,9 @@ router.get('/', function(req, res) {
           const select = $(list).find("a");
           const name = select.find("span.prod-list__txt").text();
           const price = select.find("span.prod-list__price").text();
-          const img = select.find("span.prod-list__thumb > img").attr("src");
+          const imgOrig = select.find("span.prod-list__thumb > img").attr("src");
+          const imgSplit = imgOrig.split('?');
+          const img = imgSplit[0];
           const link = select.attr("href");
           const pcodeSplit = link.split('=');
           const pcode = pcodeSplit[1];

@@ -36,11 +36,14 @@ router.get('/:id', function(req, res) {
           if(price === ""){
             price = $(src).find("div.top5_price > em.num_c").first().text() + "원";
           }
-          var img = $(src).find("div.thumb_image > a > img").attr("src");
+          var imgOrig = $(src).find("div.thumb_image > a > img").attr("src") + '';
 
-          if(img === undefined){
-            img = $(src).find("div.thumb_image > a > img").attr("data-original");
+          if(imgOrig === undefined){
+            imgOrig = $(src).find("div.thumb_image > a > img").attr("data-original") + '';
           }
+
+          const imgSplit = imgOrig.split('?');
+          const img = imgSplit[0];
 
           if(name !== ""){
             if(link.search("/ajax/") === -1){
