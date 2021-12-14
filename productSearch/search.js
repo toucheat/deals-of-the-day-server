@@ -38,7 +38,7 @@ router.get('/:id', function(req, res) {
           }
           var imgOrig = $(src).find("div.thumb_image > a > img").attr("src") + '';
 
-          if(imgOrig === undefined){
+          if(imgOrig == "undefined"){ // 일부러 == 씀 string일때도 있고 아닐때도 있음
             imgOrig = $(src).find("div.thumb_image > a > img").attr("data-original") + '';
           }
 
