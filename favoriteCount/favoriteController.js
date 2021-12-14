@@ -47,6 +47,14 @@ router.delete('/:mall', function(req, res) {
         });
 });
 
+// pcode로 찜 된 횟수 조회
+router.get('/:pcode', function(req, res) {
+    favorite.findOne( { pcode: req.params.pcode }, function(err, users) {
+        if (err) return res.status(500).send("favorite count 조회 실패.");
+        res.status(200).send(users);
+    });
+});
+
 //찜목록 전체 조회
 router.get('/', function(req, res) {
     favorite.find( {}, function(err, users) {
